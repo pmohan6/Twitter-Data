@@ -150,7 +150,9 @@ function recursive_reply($node)
 			array_push($relevant_tweets, $parent);
 		}
 		else
-			print $parent["error"]."\n";
+		{	//Uncomment the following line to look for errors from twitter api.
+			//print $parent["error"]."\n";
+		}
 	}	
 	
 	return $node;
@@ -172,7 +174,7 @@ function recursive_retweet($node)
 		$retweets =	$twitter->connection->get("statuses/retweets/$node_id");
 		if(!array_key_exists("error", $retweets))
 		{
-			print_r($retweets);
+			//print_r($retweets);
 			for($i = 0; $i < count($retweets); $i++)
 			{
 				$retweets[$i]["type"] = "retweet";
@@ -182,7 +184,9 @@ function recursive_retweet($node)
 			}			
 		}
 		else
-			print $retweets["error"]."\n";
+		{	//Uncomment the following line to look for errors from twitter api.
+			//print $retweets["error"]."\n";
+		}
 	}
 	return $node;
 }
